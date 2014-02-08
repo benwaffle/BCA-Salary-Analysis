@@ -1,0 +1,16 @@
+(* get list of URLs *)
+urls = 
+	Table["http://php.app.com/edstaff/results2.php?pageNum_Recordset1=" <> ToString[i] <> "&totalRows_Recordset1=107&county=BERGEN&district=Bergen+County+Vocational+Technical+Schools&school=Bergen+County+Academies&lname=&fname=&job1=%25&Submit=Submit", {i, 0, 10}];
+
+raw = Import[#,"Data"]&/@urls; (* import all of the data *)
+
+data = DeleteCases[Cases[raw, {_,_,_,_,_,_,_,_,_,_},\[Infinity]], {"Details","County","District","School","Last","Rest","Years Experience","Salary","Job","Classes Taught"}]; (* extract the table and remove headings *)
+
+usefuldata = Delete[#,{{1},{2},{3},{4}}]&/@data; (* remove columns with all same data *)
+
+salaries=ToExpression[StringReplace[StringDrop[Part[#,4],1],","->""]]&/@usefuldata; (* remove $ from salaries and convert to number *)
+
+finalclean = usefuldata;
+For[i=1,i<= Length@salaries,i++,finalclean[[i,4]] = salaries[[i]]]; (* replace salaries with numbers in finalclean *)
+
+Export["bca.csv",finalclean] (* export to csv *)

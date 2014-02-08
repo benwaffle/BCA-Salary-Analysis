@@ -1,0 +1,165 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      5628,        156]
+NotebookOptionsPosition[      5211,        138]
+NotebookOutlinePosition[      5576,        154]
+CellTagsIndexPosition[      5533,        151]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"urls", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{
+     "\"\<http://php.app.com/edstaff/results2.php?pageNum_Recordset1=\>\"", 
+      " ", "<>", 
+      RowBox[{"ToString", "[", "i", "]"}], "<>", 
+      "\"\<&totalRows_Recordset1=107&county=BERGEN&district=Bergen+County+\
+Vocational+Technical+Schools&school=Bergen+County+Academies&lname=&fname=&\
+job1=%25&Submit=Submit\>\""}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", " ", "0", ",", " ", "10"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"raw", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Import", "[", 
+      RowBox[{"#", ",", "\"\<Data\>\""}], "]"}], "&"}], "/@", "urls"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.60082448302174*^9, 3.600824545812521*^9}, {
+  3.600824674789316*^9, 3.6008247653965807`*^9}, {3.6008248420045166`*^9, 
+  3.60082490565016*^9}, {3.6008249728998413`*^9, 3.6008249778425493`*^9}, {
+  3.6008250315046377`*^9, 3.6008251455467095`*^9}, {3.6008252184959555`*^9, 
+  3.6008252266690383`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"data", " ", "=", 
+   RowBox[{"DeleteCases", "[", 
+    RowBox[{
+     RowBox[{"Cases", "[", 
+      RowBox[{"raw", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{
+        "_", ",", "_", ",", "_", ",", "_", ",", "_", ",", "_", ",", "_", ",", 
+         "_", ",", "_", ",", "_"}], "}"}], ",", "\[Infinity]"}], "]"}], ",", 
+     " ", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<Details\>\"", ",", "\"\<County\>\"", ",", "\"\<District\>\"", ",", 
+       "\"\<School\>\"", ",", "\"\<Last\>\"", ",", "\"\<Rest\>\"", ",", 
+       "\"\<Years Experience\>\"", ",", "\"\<Salary\>\"", ",", "\"\<Job\>\"", 
+       ",", "\"\<Classes Taught\>\""}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"usefuldata", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Delete", "[", 
+      RowBox[{"#", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", "1", "}"}], ",", 
+         RowBox[{"{", "2", "}"}], ",", 
+         RowBox[{"{", "3", "}"}], ",", 
+         RowBox[{"{", "4", "}"}]}], "}"}]}], "]"}], "&"}], "/@", "data"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.600825179770851*^9, 3.6008251823181324`*^9}, {
+   3.6008252304976115`*^9, 3.600825359235695*^9}, {3.600825681741322*^9, 
+   3.6008257232768645`*^9}, {3.600825827789019*^9, 3.6008258339308634`*^9}, {
+   3.6008258676589766`*^9, 3.6008258953253183`*^9}, {3.600825956964387*^9, 
+   3.6008259921723695`*^9}, {3.6008260314361706`*^9, 3.600826114389429*^9}, 
+   3.60082619290609*^9, {3.60082786846233*^9, 3.6008278754389744`*^9}, {
+   3.6008279779966145`*^9, 3.600828013149085*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"salaries", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"ToExpression", "[", 
+      RowBox[{"StringReplace", "[", 
+       RowBox[{
+        RowBox[{"StringDrop", "[", 
+         RowBox[{
+          RowBox[{"Part", "[", 
+           RowBox[{"#", ",", "4"}], "]"}], ",", "1"}], "]"}], ",", 
+        RowBox[{"\"\<,\>\"", "\[Rule]", "\"\<\>\""}]}], "]"}], "]"}], "&"}], "/@",
+     "usefuldata"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.600826194173297*^9, 3.600826244248971*^9}, {
+   3.6008262930484347`*^9, 3.600826348070818*^9}, {3.60082638317524*^9, 
+   3.600826428924795*^9}, {3.6008264781346474`*^9, 3.6008266485338793`*^9}, {
+   3.600826688453886*^9, 3.6008267153975377`*^9}, {3.600826749108633*^9, 
+   3.6008267589650145`*^9}, {3.600826827476246*^9, 3.600826906739707*^9}, 
+   3.6008271792671723`*^9, 3.6008278625406923`*^9, 3.600829921903135*^9, {
+   3.6008299752789516`*^9, 3.6008299758555045`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"finalclean", " ", "=", " ", "usefuldata"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"i", "=", "1"}], ",", 
+    RowBox[{"i", "\[LessEqual]", " ", 
+     RowBox[{"Length", "@", "salaries"}]}], ",", 
+    RowBox[{"i", "++"}], ",", 
+    RowBox[{
+     RowBox[{"finalclean", "[", 
+      RowBox[{"[", 
+       RowBox[{"i", ",", "4"}], "]"}], "]"}], " ", "=", " ", 
+     RowBox[{"salaries", "[", 
+      RowBox[{"[", "i", "]"}], "]"}]}]}], "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.60082840373695*^9, 3.6008284271942806`*^9}, {
+   3.600828465448703*^9, 3.600828562477082*^9}, {3.6008285930501876`*^9, 
+   3.6008286491606083`*^9}, 3.6008299598232374`*^9}],
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<bca.csv\>\"", ",", "finalclean"}], "]"}]], "Input",
+ CellChangeTimes->{{3.600828565463925*^9, 3.600828566793187*^9}, {
+  3.6008286814783773`*^9, 3.6008287105200253`*^9}, {3.6008299542549357`*^9, 
+  3.6008299562218084`*^9}}]
+},
+WindowSize->{1592, 781},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+ShowSelection->True,
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (November 20, 2012)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 1087, 26, 72, "Input"],
+Cell[1647, 48, 1604, 38, 52, "Input"],
+Cell[3254, 88, 936, 20, 31, "Input"],
+Cell[4193, 110, 734, 19, 52, "Input"],
+Cell[4930, 131, 277, 5, 31, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
