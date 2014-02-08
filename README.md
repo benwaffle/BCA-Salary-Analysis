@@ -7,4 +7,4 @@ Written in Mathematica, output to bca.csv
 
 .nb file can be opened in Mathematica, .nb.txt is the code as plaintext
 
-This data is graphed at (prince781's github page)[http://prince781.github.io]
+This data is graphed at [prince781's github page](http://prince781.github.io)
